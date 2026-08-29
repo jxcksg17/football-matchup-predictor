@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatchPulse | Quantitative Football Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="glow-bg"></div>
+  <div class="container">
+    <header class="navbar">
+      <div class="logo">
+        <span class="logo-dot"></span> MatchPulse
+      </div>
+      <div class="scope-toggle">
+        <button id="scope-club" class="toggle-btn active" onclick="setScope('club')">Club Leagues</button>
+        <button id="scope-intl" class="toggle-btn" onclick="setScope('international')">International</button>
+      </div>
+    </header>
+
+    <div class="card selector-card">
+      <div class="team-dropdown-box">
+        <label>Home Side</label>
+        <select id="home-select"></select>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="team-dropdown-box">
+        <label>Away Side</label>
+        <select id="away-select"></select>
+      </div>
+      <button id="sim-btn" onclick="executePrediction()">Simulate Match</button>
+    </div>
+
+    <div id="results" class="results-container" style="display: none;">
+      <div class="card matchup-banner">
+        <div class="team-box">
+          <h2 id="home-title">Home Team</h2>
+          <span class="elo-badge" id="home-elo">Elo: 1500</span>
+          <div class="xg-val" id="home-xg">xG: 0.00</div>
+        </div>
+
+        <div class="matchup-probs">
+          <div class="prob-labels">
+            <span id="home-prob-text">0%</span>
+            <span id="draw-prob-text">Draw 0%</span>
+            <span id="away-prob-text">0%</span>
+          </div>
+          <div class="prob-bar-container">
+            <div id="bar-home" class="bar bar-h"></div>
+            <div id="bar-draw" class="bar bar-d"></div>
+            <div id="bar-away" class="bar bar-a"></div>
+          </div>
+        </div>
+
+        <div class="team-box right">
+          <h2 id="away-title">Away Team</h2>
+          <span class="elo-badge" id="away-elo">Elo: 1500</span>
+          <div class="xg-val" id="away-xg">xG: 0.00</div>
+        </div>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="card top-outcomes-card">
+          <h3>Most Likely Outcomes</h3>
+          <div id="top-scores-list" class="scores-list"></div>
+        </div>
+
+        <div class="card matrix-card">
+          <h3>Scoreline Distribution Matrix (%)</h3>
+          <p class="matrix-sub">Row = Home Goals | Column = Away Goals</p>
+          <div id="matrix-grid" class="matrix-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
